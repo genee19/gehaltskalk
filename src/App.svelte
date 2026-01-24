@@ -57,22 +57,29 @@
   }
 
   // UI Helpers
-  let showSettings = $state(false);
+  let settingsSummary = $derived.by(() => {
+    const parts = [
+      `Class ${['I','II','III','IV','V','VI'][settings.taxClass - 1]}`,
+      settings.hasChildren ? `${settings.childCount} Child(ren)` : 'No Children',
+      settings.churchTax ? 'Church Tax' : 'No Church Tax',
+      settings.state === 'west' ? 'West' : 'East',
+      `${hoursPerWeek}h/week`
+    ];
+    return parts.join(' • ');
+  });
 
 </script>
 
 <main class="container">
   <h1>🇩🇪 Gehaltsrechner 2026</h1>
   
-  <!-- Settings Toggle -->
-  <div class="settings-toggle">
-    <button onclick={() => showSettings = !showSettings}>
-      {showSettings ? 'Hide Settings' : 'Show Settings'}
-    </button>
-  </div>
+  <!-- Settings Section -->
+  <details class="settings-section">
+    <summary class="settings-summary">
+      <span class="summary-details">{settingsSummary}</span>
+      <span class="toggle-icon">▼</span>
+    </summary>
 
-  <!-- Settings Panel -->
-  {#if showSettings}
     <div class="settings-panel">
       <div class="setting-group">
         <label>Hours/Week: <input type="number" bind:value={hoursPerWeek} /></label>
@@ -127,7 +134,7 @@
         {/if}
       </div>
     </div>
-  {/if}
+  </details>
 
   <!-- Calculator Grid -->
   <div class="calculator-grid">
@@ -239,19 +246,57 @@
     color: #2c3e50;
   }
   
-  .settings-toggle {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  .settings-panel {
-    background: #f0f4f8;
-    padding: 1rem;
-    border-radius: 8px;
+  .settings-section {
     margin-bottom: 2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .settings-section[open] {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .settings-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: #f8fafc;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .settings-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .summary-details {
+    font-size: 0.95rem;
+    color: #475569;
+    font-weight: 500;
+  }
+
+  .toggle-icon {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    transition: transform 0.3s ease;
+  }
+
+  .settings-section[open] .toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  .settings-panel {
+    background: #fff;
+    padding: 1.5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    border-top: 1px solid #f1f5f9;
   }
   
   .setting-group {
@@ -347,16 +392,4 @@
     margin-top: 1rem;
   }
   
-  button {
-    padding: 0.5rem 1rem;
-    background: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background: #2563eb;
-  }
 </style>
