@@ -189,6 +189,10 @@
     </div>
   </div>
 
+  <a href="https://buymeacoffee.com/genee19" target="_blank" class="donate-btn">
+    🧾 Buy me a coffee
+  </a>
+
   <!-- Breakdown -->
   <div class="breakdown">
     <h3>Tax Breakdown (Yearly)</h3>
