@@ -228,3 +228,7 @@
   </div>
 
 </main>
+
+<footer class="copyright">
+  <p>© 2026 Evgenii Efimochkin. No cookies, no analytics, no tracking, no data collected.</p>
+</footer>

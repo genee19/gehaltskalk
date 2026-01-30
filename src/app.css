@@ -104,3 +104,10 @@ button:focus-visible {
   margin: 1rem 0;
   text-align: center;
 }
+
+.copyright {
+  text-align: center;
+  color: #777;
+  font-size: 70%;
+  padding: 0;
+}
