@@ -193,6 +193,8 @@
     🧾 Buy me a coffee
   </a>
 
+  <p class="disclaimer">The numbers shown are an estimation and may not be taken as financial advice.</p>
+
   <!-- Breakdown -->
   <div class="breakdown">
     <h3>Tax Breakdown (Yearly)</h3>
