@@ -75,6 +75,9 @@ jobs:
           name: dist-files
           path: dist/
 
+      - name: Create target directory
+        run: mkdir -p $(dirname site-repo/${{ vars.SITE_FILE_PATH }})
+
       - name: Copy built file to site repo
         run: cp dist/index.html site-repo/${{ vars.SITE_FILE_PATH }}
 
