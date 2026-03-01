@@ -25,8 +25,37 @@
   }
 
   function parseDisplay(str: string): number {
-    const cleaned = str.replace(",", ".");
-    const num = parseFloat(cleaned);
+    // Normalize various locale number formats to a standard "1234.56" string before parsing.
+    let value = str.trim().replace(/\s+/g, "");
+
+    const hasComma = value.includes(",");
+    const hasDot = value.includes(".");
+
+    if (hasComma && hasDot) {
+      // If both separators are present, assume the last one is the decimal separator
+      // and the other is a thousands/grouping separator.
+      const lastComma = value.lastIndexOf(",");
+      const lastDot = value.lastIndexOf(".");
+      const decimalSep = lastComma > lastDot ? "," : ".";
+      const groupSep = decimalSep === "," ? "." : ",";
+
+      // Remove all grouping separators
+      const groupSepRegex = new RegExp("\\" + groupSep, "g");
+      value = value.replace(groupSepRegex, "");
+
+      // Normalize decimal separator to "."
+      if (decimalSep !== ".") {
+        const decimalRegex = new RegExp("\\" + decimalSep, "g");
+        value = value.replace(decimalRegex, ".");
+      }
+    } else if (hasComma && !hasDot) {
+      // Only commas: treat as decimal separator and normalize to "."
+      value = value.replace(/,/g, ".");
+    } else {
+      // Only dots or no separators: already suitable for parseFloat
+    }
+
+    const num = parseFloat(value);
     return isNaN(num) ? 0 : num;
   }
 
