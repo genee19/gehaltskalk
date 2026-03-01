@@ -1,6 +1,7 @@
 <script lang="ts">
   import { calculateTaxes, calculateGrossFromNet } from './lib/tax-logic';
   import type { TaxSettings } from './lib/tax-logic';
+  import FinancialInput from './lib/FinancialInput.svelte';
 
   // State: Settings
   let settings = $state<TaxSettings>({
@@ -145,21 +146,21 @@
       <div class="input-group">
         <label>Yearly</label>
         <div class="input-wrapper">
-          <input type="number" value={Math.round(grossYearly)} oninput={(e) => updateFromGrossYearly(+e.currentTarget.value)} />
+          <FinancialInput bind:value={grossYearly} onchange={updateFromGrossYearly} />
           <span>€</span>
         </div>
       </div>
       <div class="input-group">
         <label>Monthly</label>
         <div class="input-wrapper">
-          <input type="number" value={Math.round(grossMonthly)} oninput={(e) => updateFromGrossMonthly(+e.currentTarget.value)} />
+          <FinancialInput value={grossMonthly} onchange={updateFromGrossMonthly} />
           <span>€</span>
         </div>
       </div>
       <div class="input-group">
         <label>Hourly</label>
         <div class="input-wrapper">
-          <input type="number" step="0.01" value={grossHourly.toFixed(2)} oninput={(e) => updateFromGrossHourly(+e.currentTarget.value)} />
+          <FinancialInput value={grossHourly} onchange={updateFromGrossHourly} />
           <span>€</span>
         </div>
       </div>
@@ -170,22 +171,22 @@
       <div class="input-group">
         <label>Yearly</label>
         <div class="input-wrapper">
-          <input type="number" value={Math.round(netYearly)} oninput={(e) => updateFromNetYearly(+e.currentTarget.value)} />
+          <FinancialInput value={netYearly} onchange={updateFromNetYearly} />
           <span>€</span>
         </div>
       </div>
        <div class="input-group">
         <label>Monthly</label>
         <div class="input-wrapper">
-           <input type="number" value={Math.round(netMonthly)} oninput={(e) => updateFromNetMonthly(+e.currentTarget.value)} />
-           <span>€</span>
+          <FinancialInput value={netMonthly} onchange={updateFromNetMonthly} />
+          <span>€</span>
         </div>
       </div>
        <div class="input-group">
         <label>Hourly</label>
         <div class="input-wrapper">
-           <input type="number" step="0.01" value={netHourly.toFixed(2)} oninput={(e) => updateFromNetHourly(+e.currentTarget.value)} />
-           <span>€</span>
+          <FinancialInput value={netHourly} onchange={updateFromNetHourly} />
+          <span>€</span>
         </div>
       </div>
     </div>
