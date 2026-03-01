@@ -62,13 +62,15 @@
   function handleKeyDown(e: KeyboardEvent) {
     if (disabled) return;
 
-    // Handle selection: if text is selected, replace with new input
-    if (inputEl && inputEl.selectionStart !== null && inputEl.selectionEnd !== null) {
-      const hasSelection = inputEl.selectionStart !== inputEl.selectionEnd;
-      if (hasSelection) {
-        // If there's any selection, start fresh from 0.00
-        editValue = 0;
-        displayValue = "0.00";
+    // Handle selection: only for digit input - replace with new input
+    if (/^[0-9]$/.test(e.key)) {
+      if (inputEl && inputEl.selectionStart !== null && inputEl.selectionEnd !== null) {
+        const hasSelection = inputEl.selectionStart !== inputEl.selectionEnd;
+        if (hasSelection) {
+          // If there's any selection, start fresh from 0.00
+          editValue = 0;
+          displayValue = "0.00";
+        }
       }
     }
 
@@ -125,6 +127,15 @@
     });
   }
 
+  function handleSelect(e: Event) {
+    // If user manages to create partial selection, immediately expand to all
+    requestAnimationFrame(() => {
+      if (inputEl) {
+        inputEl.select();
+      }
+    });
+  }
+
   function handleInput(e: Event) {
     const target = e.target as HTMLInputElement;
     let val = parseDisplay(target.value);
@@ -154,7 +165,8 @@
   {disabled}
   onkeydown={handleKeyDown}
   oninput={handleInput}
+  onmousedown={handleMouseDown}
+  onselect={handleSelect}
   onfocus={handleFocus}
   onblur={handleBlur}
-  onmousedown={handleMouseDown}
 />
