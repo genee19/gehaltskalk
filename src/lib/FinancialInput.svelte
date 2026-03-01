@@ -62,6 +62,11 @@
   function handleKeyDown(e: KeyboardEvent) {
     if (disabled) return;
 
+    // Allow modifier-based keystrokes (Ctrl+P, Ctrl+A, etc.)
+    if (e.ctrlKey || e.metaKey || e.altKey) {
+      return;
+    }
+
     const key = e.key;
 
     if (key === "Backspace") {
@@ -88,6 +93,7 @@
     }
 
     if (!/^[0-9]$/.test(key)) {
+      e.preventDefault();
       return;
     }
 
