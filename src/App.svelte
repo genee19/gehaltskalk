@@ -143,52 +143,52 @@
   <div class="calculator-grid">
     <div class="column">
       <h2>Gross (Brutto)</h2>
-      <div class="input-group">
-        <label>Yearly</label>
+      <label class="input-group">
+        <span class="input-label">Yearly</span>
         <div class="input-wrapper">
           <FinancialInput bind:value={grossYearly} onchange={updateFromGrossYearly} />
-          <span>€</span>
+          <span class="currency">€</span>
         </div>
-      </div>
-      <div class="input-group">
-        <label>Monthly</label>
+      </label>
+      <label class="input-group">
+        <span class="input-label">Monthly</span>
         <div class="input-wrapper">
           <FinancialInput value={grossMonthly} onchange={updateFromGrossMonthly} />
-          <span>€</span>
+          <span class="currency">€</span>
         </div>
-      </div>
-      <div class="input-group">
-        <label>Hourly</label>
+      </label>
+      <label class="input-group">
+        <span class="input-label">Hourly</span>
         <div class="input-wrapper">
           <FinancialInput value={grossHourly} onchange={updateFromGrossHourly} />
-          <span>€</span>
+          <span class="currency">€</span>
         </div>
-      </div>
+      </label>
     </div>
 
     <div class="column">
       <h2>Net (Netto)</h2>
-      <div class="input-group">
-        <label>Yearly</label>
+      <label class="input-group">
+        <span class="input-label">Yearly</span>
         <div class="input-wrapper">
           <FinancialInput value={netYearly} onchange={updateFromNetYearly} />
-          <span>€</span>
+          <span class="currency">€</span>
         </div>
-      </div>
-       <div class="input-group">
-        <label>Monthly</label>
+      </label>
+       <label class="input-group">
+        <span class="input-label">Monthly</span>
         <div class="input-wrapper">
           <FinancialInput value={netMonthly} onchange={updateFromNetMonthly} />
-          <span>€</span>
+          <span class="currency">€</span>
         </div>
-      </div>
-       <div class="input-group">
-        <label>Hourly</label>
+      </label>
+       <label class="input-group">
+        <span class="input-label">Hourly</span>
         <div class="input-wrapper">
           <FinancialInput value={netHourly} onchange={updateFromNetHourly} />
-          <span>€</span>
+          <span class="currency">€</span>
         </div>
-      </div>
+      </label>
     </div>
   </div>
 
@@ -226,7 +226,7 @@
     </div>
     
     <div class="total-row">
-      <span>Total Deductions:</span> <span>{(result.taxes.total + result.social.total).toFixed(2)} €</span>
+      <span>Total Deductions:</span> <span class="grand-total">{(result.taxes.total + result.social.total).toFixed(2)} €</span>
     </div>
   </div>
 

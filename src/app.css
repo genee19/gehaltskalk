@@ -337,13 +337,14 @@ a:hover {
 /* Input Groups */
 .input-group {
   margin-bottom: 1rem;
+  display: block;
 }
 
 .input-group:last-child {
   margin-bottom: 0;
 }
 
-.input-group label {
+.input-label {
   display: block;
   font-size: 0.8rem;
   font-weight: 500;
@@ -355,7 +356,7 @@ a:hover {
 
 .input-wrapper {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   border: 1.5px solid var(--border-subtle);
   border-radius: 8px;
   padding: 0.6rem 0.75rem;
@@ -388,7 +389,7 @@ a:hover {
   font-weight: 400;
 }
 
-.input-wrapper span {
+.input-wrapper .currency {
   font-family: var(--font-mono);
   font-size: 0.9rem;
   color: var(--text-muted);
@@ -494,7 +495,7 @@ input[type="checkbox"] {
 .total-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   padding: 1rem 0 0;
   margin-top: 0.75rem;
   border-top: 2px solid var(--accent-primary);
@@ -508,10 +509,11 @@ input[type="checkbox"] {
   letter-spacing: 0.05em;
 }
 
-.total-row span:last-child {
+.total-row .grand-total {
   font-family: var(--font-mono);
   font-size: 1.1rem;
   color: var(--accent-primary);
+  white-space: nowrap;
 }
 
 /* Donate Button */
@@ -554,8 +556,6 @@ input[type="checkbox"] {
   color: var(--text-muted);
   font-size: 0.7rem;
   padding: 1.5rem 0 0;
-  margin-top: 1rem;
-  border-top: 1px solid var(--border-subtle);
 }
 
 /* Animations */
