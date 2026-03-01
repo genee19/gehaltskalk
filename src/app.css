@@ -74,6 +74,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  min-height: 100dvh;
+}
+
 html {
   scroll-behavior: smooth;
 }
