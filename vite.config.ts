@@ -6,8 +6,8 @@ import { viteSingleFile } from 'vite-plugin-singlefile'
 export default defineConfig({
   plugins: [svelte(), viteSingleFile()],
   base: './',
-  test: {
-    environment: 'jsdom',
-    passWithNoTests: true,
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
   },
 })
