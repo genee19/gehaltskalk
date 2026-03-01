@@ -130,7 +130,7 @@
   bind:this={inputEl}
   type="text"
   inputmode="decimal"
-  bind:value={displayValue}
+  value={displayValue}
   {placeholder}
   {disabled}
   onkeydown={handleKeyDown}
