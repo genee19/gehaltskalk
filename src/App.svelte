@@ -59,11 +59,12 @@
   // UI Helpers
   let settingsSummary = $derived.by(() => {
     const parts = [
+      `${hoursPerWeek}h/week`,
       `Class ${['I','II','III','IV','V','VI'][settings.taxClass - 1]}`,
+      `Age ${settings.age}`,
       settings.hasChildren ? `${settings.childCount} Child(ren)` : 'No Children',
-      settings.churchTax ? 'Church Tax' : 'No Church Tax',
       settings.state === 'west' ? 'West' : 'East',
-      `${hoursPerWeek}h/week`
+      settings.churchTax ? 'Church Tax' : 'No Church Tax'
     ];
     return parts.join(' • ');
   });
@@ -81,56 +82,57 @@
     </summary>
 
     <div class="settings-panel">
-      <div class="setting-group">
-        <label>Hours/Week: <input type="number" bind:value={hoursPerWeek} /></label>
+      <div class="setting-item">
+        <label for="hours-week">Hours/Week</label>
+        <input id="hours-week" type="number" bind:value={hoursPerWeek} />
       </div>
-      <div class="setting-group">
-        <label>Tax Class: 
-          <select bind:value={settings.taxClass}>
-            <option value={1}>I</option>
-            <option value={2}>II</option>
-            <option value={3}>III</option>
-            <option value={4}>IV</option>
-            <option value={5}>V</option>
-            <option value={6}>VI</option>
-          </select>
-        </label>
+      <div class="setting-item">
+        <label for="tax-class">Tax Class</label>
+        <select id="tax-class" bind:value={settings.taxClass}>
+          <option value={1}>I</option>
+          <option value={2}>II</option>
+          <option value={3}>III</option>
+          <option value={4}>IV</option>
+          <option value={5}>V</option>
+          <option value={6}>VI</option>
+        </select>
       </div>
-      <div class="setting-group">
-        <label>Age: <input type="number" bind:value={settings.age} /></label>
+      <div class="setting-item">
+        <label for="age">Age</label>
+        <input id="age" type="number" bind:value={settings.age} />
       </div>
-      <div class="setting-group">
-        <label>
-          <input type="checkbox" bind:checked={settings.churchTax} /> Church Tax
-        </label>
-      </div>
-      <div class="setting-group">
-        <label>
-          <input type="checkbox" bind:checked={settings.hasChildren} /> Children?
-        </label>
+      <div class="setting-item checkbox-item">
+        <input id="has-children" type="checkbox" bind:checked={settings.hasChildren} />
+        <label for="has-children">Children</label>
         {#if settings.hasChildren}
-           <input type="number" min="0" bind:value={settings.childCount} placeholder="Count"/>
+          <input type="number" min="0" bind:value={settings.childCount} placeholder="Count" class="child-count"/>
         {/if}
       </div>
-       <div class="setting-group">
-        <label>Region: 
-          <select bind:value={settings.state}>
-            <option value="west">West Germany</option>
-            <option value="east">East Germany</option>
-          </select>
-        </label>
+      <div class="setting-item">
+        <label for="region">Region</label>
+        <select id="region" bind:value={settings.state}>
+          <option value="west">West Germany</option>
+          <option value="east">East Germany</option>
+        </select>
       </div>
-       <div class="setting-group">
-        <label>Health Ins: 
-          <select bind:value={settings.kvType}>
-            <option value="public">Public (GKV)</option>
-            <option value="private">Private (PKV)</option>
-          </select>
-        </label>
+      <div class="setting-item checkbox-item">
+        <input id="church-tax" type="checkbox" bind:checked={settings.churchTax} />
+        <label for="church-tax">Church Tax</label>
+      </div>
+      <div class="setting-item">
+        <label for="health-ins">Health Insurance</label>
+        <select id="health-ins" bind:value={settings.kvType}>
+          <option value="public">Public (GKV)</option>
+          <option value="private">Private (PKV)</option>
+        </select>
+      </div>
+      <div class="setting-item">
         {#if settings.kvType === 'public'}
-           <label>Add-on %: <input type="number" step="0.1" bind:value={settings.kvAddOn} /></label>
+          <label for="kv-addon">Add-on %</label>
+          <input id="kv-addon" type="number" step="0.1" bind:value={settings.kvAddOn} />
         {:else}
-           <label>Monthly €: <input type="number" bind:value={settings.kvPrivateAmount} /></label>
+          <label for="kv-private">Monthly €</label>
+          <input id="kv-private" type="number" bind:value={settings.kvPrivateAmount} />
         {/if}
       </div>
     </div>
