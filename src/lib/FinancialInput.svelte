@@ -2,12 +2,11 @@
   interface Props {
     value: number;
     onchange?: (value: number) => void;
-    step?: number;
     placeholder?: string;
     disabled?: boolean;
   }
 
-  let { value = $bindable(0), onchange, step = 1, placeholder = "0.00", disabled = false }: Props = $props();
+  let { value = $bindable(0), onchange, placeholder = "0.00", disabled = false }: Props = $props();
 
   let displayValue = $state("");
   let inputEl: HTMLInputElement;
