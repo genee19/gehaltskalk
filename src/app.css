@@ -92,6 +92,7 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 #app {
@@ -158,6 +159,7 @@ a:hover {
   background: var(--bg-secondary);
   border-radius: 16px;
   padding: 2rem;
+  padding-bottom: calc(2rem + env(safe-area-inset-bottom));
   box-shadow: var(--shadow-medium);
   border: 1px solid var(--border-subtle);
   transition: background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
